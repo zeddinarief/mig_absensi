@@ -20,12 +20,11 @@ def login():
     cursor.execute(''' SELECT * FROM user WHERE username = %s ''', (req['username']))
     user = cursor.fetch()
     mysql.connection.commit()
-
     cursor.close()
+    print(user)
     data = {
         "status": "logged in"
     }
-    
     return data
 
 @app.route("/register", methods = ['POST'])
