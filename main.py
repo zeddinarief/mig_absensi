@@ -54,7 +54,7 @@ def register():
     }
     return data
 
-@app.route("/logout", methods = ['GET'])
+@app.route("/logout", methods = ['GET','POST'])
 def logout():
     session['user'] = None
     data = {
