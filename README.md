@@ -1,4 +1,7 @@
 # mig_absensi
+API for manage attendances and activities
+
+Build with Flask microframework
 
 ## For installing to your machine:
 
