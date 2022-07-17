@@ -1,14 +1,15 @@
 # mig_absensi
 
-For installing to your machine:
-- Make your own env
-python3 -m venv env
+## For installing to your machine:
 
-- Activate your virtual environment
-source env/bin/activate
+### Make your own env
+- python3 -m venv env
 
-- Install requirements and dependencies
-pip install -r requirements.txt
+### Activate your virtual environment
+- source env/bin/activate
 
-Try run in your machine:
-python main.py
+### Install requirements and dependencies
+- pip install -r requirements.txt
+
+### Try run in your machine:
+- python main.py
