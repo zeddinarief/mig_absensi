@@ -19,17 +19,20 @@ bcrypt = Bcrypt(app)
 def login():
     req = request.json
     cursor = mysql.connection.cursor()
+    # Get user
     cursor.execute(''' SELECT * FROM user WHERE username = '%s' ''' % (req['username']))
     user = cursor.fetchone()
     mysql.connection.commit()
     cursor.close()
     print(user)
+    # Validate password
     if not user or not bcrypt.check_password_hash(user[3], req['password']):
         data = {
             "status": "Username or password wrong"
         }
         return data
 
+    # Set session
     session['user'] = {
         "id": user[0],
         "name": user[1],
@@ -66,6 +69,7 @@ def logout():
 def check_in():
     if session.get('user'):
         cursor = mysql.connection.cursor()
+        # Get check in by user today
         cursor.execute(''' SELECT * FROM absensi WHERE id_user = '%d' AND SUBSTR(checkin_time,1,10) = '%s' ''' % (session['user']['id'], datetime.date.today()))
         absen = cursor.fetchone()
         if absen:
@@ -90,6 +94,7 @@ def check_in():
 def check_out():
     if session.get('user'):
         cursor = mysql.connection.cursor()
+        # Get check in by user today
         cursor.execute(''' SELECT * FROM absensi WHERE id_user = '%d' AND SUBSTR(checkin_time,1,10) = '%s' ''' % (session['user']['id'], datetime.date.today()))
         absen = cursor.fetchone()
         if not absen:
